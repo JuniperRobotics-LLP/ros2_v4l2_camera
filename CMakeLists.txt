@@ -18,29 +18,12 @@ endif()
 # find dependencies
 find_package(ament_cmake_auto REQUIRED)
 ament_auto_find_build_dependencies()
-find_package(CUDA)
 
-if (CUDA_FOUND)
-  message(STATUS "CUDA Support is enabled in ${PROJECT_NAME}")
-  cuda_add_library(v4l2_camera
-    src/v4l2_camera.cpp
-    src/v4l2_camera_device.cpp
-  )
-  target_compile_definitions(v4l2_camera PUBLIC
-    ENABLE_CUDA
-  )
-  target_include_directories(v4l2_camera PUBLIC
-    ${CUDA_INCLUDE_DIR}
-  )
-  target_link_libraries(v4l2_camera
-    ${CUDA_nppicc_LIBRARY}
-    ${CUDA_nppisu_LIBRARY}
-  )
-else()
-  add_library(v4l2_camera
-    src/v4l2_camera.cpp
-    src/v4l2_camera_device.cpp)
-endif()
+
+add_library(v4l2_camera
+  src/v4l2_camera.cpp
+  src/v4l2_camera_device.cpp)
+
 rclcpp_components_register_nodes(v4l2_camera "v4l2_camera::V4L2Camera")
 
 target_include_directories(v4l2_camera PUBLIC

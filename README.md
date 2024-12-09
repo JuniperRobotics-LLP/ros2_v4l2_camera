@@ -1,5 +1,7 @@
 # v4l2_camera
 
+Forked from and credit to https://github.com/tier4/ros2_v4l2_camera.git at commit (37b5fd0b7f7df173e77ed0dd48242223fad9c0cb)
+
 A ROS 2 camera driver using Video4Linux2 (V4L2).
 
 ## Installation
